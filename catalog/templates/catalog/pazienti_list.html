@@ -1,0 +1,79 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    
+
+    {% if pazienti_list %}
+	<div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h2>Elenco Pazienti</h2>
+                
+            </div>
+            <div class="card-block table-border-style">
+                <div class="table-responsive">
+				<input class="form-control" id="myInput" type="text" placeholder="Search..">
+				<br>
+                    <table class="table table-striped table-bordered table-sm">
+					<thead>
+                        <tr>
+                            <th>#</th>
+                            <th>PAZIENTE</th>
+                            <th>PROPRIETARIO</th>
+                            <th>MODIFICA</th>
+							<th>ELIMINA</th>
+							<!--<th>PROVA</th>-->
+                        </tr>
+                    </thead>
+					<tbody id="myTable">
+					{% for paziente in pazienti_list %}
+					<tr>
+                        <th scope="row">1</th>
+                        <td><a href="{% url 'dettaglio_paziente' paziente.id %}">{{ paziente.nome_paziente }}</a></td>
+                        <!--<td><a href="{% url 'dettaglio_paziente' paziente.id %}"class="btn btn-outline-primary btn-sm" role="button" aria-disabled="true">{{ paziente.nome_paziente }}</a></td>-->
+                        <td>({{paziente.nome_proprietario}})</td>
+                        <td><a href="{{ paziente.get_update_url }}"class="btn btn-primary btn-sm" role="button" aria-disabled="true">MODIFICA ANAGRAFICA</a></td>
+						<td><a href="{{ paziente.get_delete_url }}"class="btn btn-danger btn-sm" role="button" aria-disabled="true">ELIMINA</a></td>
+						<!--<td></td>-->
+					</tr>
+					{% endfor %}
+				</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+	
+	
+	
+	
+<!--	
+    <ul>
+	
+      {% for paziente in pazienti_list %}
+      <li>
+        
+		<a href="{% url 'dettaglio_paziente' paziente.id %}">{{ paziente.nome_paziente }}</a>
+		({{paziente.nome_proprietario}})
+		<a href="{{ paziente.get_update_url }}"class="btn btn-primary btn-xs" role="button" aria-disabled="true">   MODIFICA ANAGRAFICA</a>
+		<a href="{{ paziente.get_delete_url }}"class="btn btn-primary btn-xs" role="button" aria-disabled="true">   ELIMINA</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% else %}
+      <p>Non ci sono pazienti nella lista.</p>
+    {% endif %}       
+{% endblock %}
+-->

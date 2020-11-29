@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Cancella scheda paziente</h1>
+
+<p>Sei sicuro di voler cancellare definitivamente la scheda di: <b>{{ pazienti.nome_paziente }}</b>? l'operazione non sarà annullabile</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Yes, delete." />
+</form>
+
+{% endblock %}

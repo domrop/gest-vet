@@ -1,0 +1,65 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+<p><h5>Nome paziente: </h5><h1>{{ pazienti.nome_paziente }}</h1></p>
+
+<p><strong>Data di nascita:</strong> <b>{{ pazienti.data_nascita_paziente }}</b></a></p>
+<p><strong>Razza:</strong> <b>{{ pazienti.razza_paziente }}</b></p>
+<p><strong>Nome proprietario:</strong> <b>{{ pazienti.nome_proprietario }}</b></p>
+<p><strong>Cognome proprietario:</strong> <b>{{ pazienti.cognome_proprietario }}</b></p> 
+<p><strong>Telefono:</strong> <b>{{ pazienti.telefono_proprietario }}</b></a></p>
+<p><strong>Indirizzo mail:</strong> <b>{{ pazienti.email_proprietario }}</b></p>
+<p></p>
+
+<a href="{% url 'nuova_visita' pazienti.id %}"class="btn btn-primary btn-sm" role="button" aria-disabled="true">NUOVA VISITA</a>
+							
+	<div class="card">
+	<div class="card-body">
+    <table class="table_id" class="display" style="width:100%" id="ListaVisite">
+        <thead>
+            <tr>
+                <th>data</th>
+                <th>anamnesi</th>
+                <th>prognosi</th>
+                <th>prescrizioni</th>
+				<th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in visite %}
+                <tr >
+                    <td>{{ row.data_visita }}
+					</td>
+                    <td>{{ row.anamnesi }}
+					</td>
+					<td>{{ row.prognosi }}
+					</td>
+					<td>{{ row.prescrizioni }}
+					</td>
+					<td><a href="{% url 'edit_visita' row.id %}">Modifica</a></td>
+					<td><a href="{% url 'visitacancellascheda' row.id %}">Cancella</a></td>
+					
+				</tr>
+			{% endfor %}
+        </tbody>
+    </table>
+	</div>
+	</div>
+
+
+<div style="margin-left:20px;margin-top:20px">
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+	<script type="text/javascript">
+		$(document).ready( function () {
+			$('#ListaVisite').DataTable();
+			} );
+</script>
+{% endblock extra_js %}
+

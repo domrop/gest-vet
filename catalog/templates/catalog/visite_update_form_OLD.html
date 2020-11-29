@@ -1,0 +1,56 @@
+<!--
+
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>MODIFICA VISITA</h1>
+
+<form action="" method="post">
+	{% csrf_token %}
+	<p><label for="id_anamnesi">Anamnesi:</label> <textarea name="anamnesi"  id="id_anamnesi">{{ form.anamnesi.value }}</textarea></p>
+	<p><label for="id_prognosi">Prognosi:</label> <textarea name="prognosi" value="{{ form.prognosi.value }}" id="id_prognosi"></textarea></p>
+	<p><label for="id_prescrizioni">Prescrizioni:</label> <textarea name="prescrizioni" value="{{ form.prescrizioni.value }}" id="id_prescrizioni"></textarea></p>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}
+
+
+{% block extra_js %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#id_anamnesi').summernote({
+        placeholder: '',
+        tabsize: 2,
+        height: 80,
+        toolbar: [          
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],    
+        ]
+      });
+		$('#id_prognosi').summernote({
+        placeholder: '',
+        tabsize: 2,
+        height: 80,
+        toolbar: [          
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],    
+        ]
+      });
+	  $('#id_prescrizioni').summernote({
+        placeholder: '',
+        tabsize: 2,
+        height: 80,
+        toolbar: [          
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],    
+        ]
+      });
+			});
+	</script>
+{% endblock extra_js %}
+</body>
+</html>
+
+-->

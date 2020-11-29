@@ -1,0 +1,125 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>MODIFICA SCHEDA PAZIENTE</h1>
+
+<h5>Compila accuratamente con i dati del paziente</h5>
+
+
+<form action="" method="post">
+{% csrf_token %}
+	<div class="card">
+	<div class="card-body">
+	<div class="form-group">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+	<h5><b><u>Scheda paziente</u></b></h5>
+			<div class="form-group">
+                <label for="id_nome_paziente">Nome paziente:</label>
+                <input type="text" class="form-control" placeholder="Scrivi..." name="nome_paziente" id="id_nome_paziente" value="{{ form.nome_paziente.value }}">
+                <div class="invalid-feedback">Per favore scegli un username.</div>
+			</div>
+			
+            <div class="form-group">
+                <label>Razza paziente:</label>
+                <input type="text" class="form-control" placeholder="Scrivi..." name="razza_paziente" id="id_razza_paziente" value="{{ form.razza_paziente.value }}">
+            </div>
+			<!--
+			<div class="form-group">
+                <label>Data nascita paziente:</label>
+                <input type="text" class="form-control" placeholder="Scrivi..." name="data_nascita_paziente" id="id_data_nascita_paziente" value="{{ form.data_nascita_paziente.value }}">
+            </div>
+			-->
+			
+			<div class="form-group">
+                <label>Data nascita paziente:</label>
+                <input type="text" class="form-control docs-date" placeholder="Scrivi..." name="data_nascita_paziente" id="datepicker" value="{{ form.data_nascita_paziente.value }}">
+            </div>
+			
+			<br>
+			<h5><b><u>Scheda proprietario</u></b></h5>
+			<div class="form-group">
+                <label>Nome proprietario:</label>
+                <input type="text" class="form-control" placeholder="Scrivi..." name="nome_proprietario" id="id_nome_proprietario" value="{{ form.nome_proprietario.value }}">
+            </div>
+			
+			<div class="form-group">
+                <label>Cognome proprietario:</label>
+                <input type="text" class="form-control" placeholder="Scrivi..." name="cognome_proprietario" id="id_cognome_proprietario" value="{{ form.cognome_proprietario.value }}">
+            </div>
+			
+			<div class="form-group">
+                <label>Telefono proprietario:</label>
+                <input type="text" class="form-control" placeholder="Scrivi..." name="telefono_proprietario" id="id_telefono_proprietario" value="{{ form.telefono_proprietario.value }}">
+            </div>
+			
+			<div class="form-group">
+                <label>Email proprietario:</label>
+                <input type="email" class="form-control" placeholder="Scrivi..." name="email_proprietario" id="id_email_proprietario" value="{{ form.email_proprietario.value }}">
+            </div>
+			
+            <button type="submit" class="btn btn-primary">Modifica</button>
+	
+    </div>   
+    </div>
+	</div>
+</form>
+
+<!--
+
+{% csrf_token %}
+<form action="" method="post">
+	<div class="form-group">
+    <input type="hidden" name="csrfmiddlewaretoken" value="oON1j9lfHkOfy6hAeTvH09NNJwCwDKB7YDbrppnpPRMieuCiFvO9Lq2r1g4KF9Yv">
+    <table>
+    <tr><th><label for="id_nome_paziente">Nome paziente:</label></th><td><input type="text"                                         name="nome_paziente" maxlength="50" id="id_nome_paziente" value="{{ form.nome_paziente.value }}"></td></tr>
+	<tr><th><label for="id_razza_paziente">Razza paziente:</label></th><td><input type="text" name="razza_paziente" maxlength="50" id="id_razza_paziente" value="{{ form.razza_paziente.value }}"></td></tr>
+	<tr><th><label for="id_data_nascita_paziente">Data nascita paziente:</label></th><td><input type="text" name="data_nascita_paziente" id="id_data_nascita_paziente" value="{{ form.data_nascita_paziente.value }}"></td></tr>
+	<tr><th><label for="id_nome_proprietario">Nome proprietario:</label></th><td><input type="text" name="nome_proprietario" maxlength="100" id="id_nome_proprietario" value="{{ form.nome_proprietario.value }}"></td></tr>
+	<tr><th><label for="id_cognome_proprietario">Cognome proprietario:</label></th><td><input type="text" name="cognome_proprietario" maxlength="100" id="id_cognome_proprietario" value="{{ form.cognome_proprietario.value }}"></td></tr>
+	<tr><th><label for="id_telefono_proprietario">Telefono proprietario:</label></th><td><input type="text" name="telefono_proprietario" maxlength="100" id="id_telefono_proprietario" value="{{ form.telefono_proprietario.value }}"></td></tr>
+	<tr><th><label for="id_email_proprietario">Email proprietario:</label></th><td><input type="email" name="email_proprietario" maxlength="100" id="id_email_proprietario" value="{{ form.email_proprietario.value }}"></td></tr>
+  
+	</table>
+    <input type="submit" value="Submit" />
+    </div>
+</form>
+-->
+
+
+<!--
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
+    
+</form>
+
+-->
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript">
+ $(function () {
+      $("#datepicker").datepicker();
+	  
+    });
+</script>
+<script>
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, false);
+      form.classList.add('was-validated');
+    });
+  }, false);
+})();
+</script>
+{% endblock extra_js %}
